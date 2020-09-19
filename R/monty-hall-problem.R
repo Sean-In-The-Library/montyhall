@@ -35,26 +35,25 @@ create_game <- function()
 
 
 #' @title
-#'   Select a door
+#'   Select a Door
+#'   
 #' @description
-#'   This function selects one of the available vectors randomly
+#'   This function selects one of the available vectors randomly.
+#'   
 #' @details
-#'   The game setup replicates the game on the TV show "Let's
-#'   Make a Deal" where there are three doors for a contestant
-#'   to choose from, one of which has a car behind it and two
-#'   have goats. The contestant selects a door, then the host
-#'   opens a door to reveal a goat, and then the contestant is
-#'   given an opportunity to stay with their original selection
-#'   or switch to the other unopened door. There was a famous
-#'   debate about whether it was optimal to stay or switch when
-#'   given the option to switch, so this simulation was created
-#'   to test both strategies.
-#' @param
-#'   Yeet
+#'   The contestant makes their first selection. The function will 
+#'   select one door at random.
+#'   
+#' @param ... no arguments are used by the function.
+#'   
+#'   
 #' @return
-#'   This function returns one of the three available vectors
+#'   This function returns a number for doors 1-3 as 
+#'   "a.pick"
+#'   
 #' @examples
 #'   select_door
+#'   
 #' @export
 select_door <- function( )
 {
@@ -67,27 +66,29 @@ select_door <- function( )
 
 #' @title
 #'   Open the Goat Door
+#'   
 #' @description
 #'   This function opens the goat door - assuming the user didn't
 #'   select the goat door during their first choice.
+#'   
 #' @details
-#'   The game setup replicates the game on the TV show "Let's
-#'   Make a Deal" where there are three doors for a contestant
-#'   to choose from, one of which has a car behind it and two
-#'   have goats. The contestant selects a door, then the host
-#'   opens a door to reveal a goat, and then the contestant is
-#'   given an opportunity to stay with their original selection
-#'   or switch to the other unopened door. There was a famous
-#'   debate about whether it was optimal to stay or switch when
-#'   given the option to switch, so this simulation was created
-#'   to test both strategies.
-#' @param
-#'   Yeet
+#'   The host will always open a door with a goat behind it. 
+#'   But it can't be a door the contestant has already selected. 
+#'   So it must be a door that is not a car and not a current 
+#'   contestant selection.
+#'   Note that if the contestant selects the car on the first 
+#'   guess the host can open either door, but if the contestant 
+#'   selects a goat the host only has one option.
+#'   
+#' @param ... no arguments are used by the function.
+#'   
 #' @return
 #'   This function opens the goat door to show the user one of
 #'   the two final available options.
+#'   
 #' @examples
-#'   open_goat_door
+#'   Number between 1 and 3.
+#'   
 #' @export
 open_goat_door <- function( game, a.pick )
 {
@@ -110,26 +111,26 @@ open_goat_door <- function( game, a.pick )
 
 #' @title
 #'   Change final door choice
+#'   
 #' @description
 #'   This function switches to the other available door if the
-#'   goat door is shown to the user.
+#'   goat door is shown to the user and shows the final door 
+#'   pick for the game.
+#'   
 #' @details
-#'   The game setup replicates the game on the TV show "Let's
-#'   Make a Deal" where there are three doors for a contestant
-#'   to choose from, one of which has a car behind it and two
-#'   have goats. The contestant selects a door, then the host
-#'   opens a door to reveal a goat, and then the contestant is
-#'   given an opportunity to stay with their original selection
-#'   or switch to the other unopened door. There was a famous
-#'   debate about whether it was optimal to stay or switch when
-#'   given the option to switch, so this simulation was created
-#'   to test both strategies.
-#' @param
-#'   Yeet
+#'   The contestant is given the option to change from their 
+#'   initial selection to the other door that is still closed. 
+#'   The function will represent the game-playing strategy as 
+#'   the argument stay=TRUE or stay=FALSE.
+#'   
+#' @param ... no arguments are used by the function.
+#'   
 #' @return
-#'   The will return the user's final pick for the game.
+#'   Number between 1 and 3.
+#'   
 #' @examples
-#'   open_goat_door
+#'   change_door
+#'   
 #' @export
 change_door <- function( stay=T, opened.door, a.pick )
 {
@@ -150,27 +151,28 @@ change_door <- function( stay=T, opened.door, a.pick )
 
 
 #' @title
-#'   Change final door choice
+#'   Determine Winner
+#'   
 #' @description
-#'   This function switches to the other available door if the
-#'   goat door is shown to the user.
+#'   This function lets the user know if they won either the
+#'   car or the goat. If the selected the car, the game prints
+#'   "WIN". If they selected the goat, the game prints "LOSE."
+#'   
 #' @details
-#'   The game setup replicates the game on the TV show "Let's
-#'   Make a Deal" where there are three doors for a contestant
-#'   to choose from, one of which has a car behind it and two
-#'   have goats. The contestant selects a door, then the host
-#'   opens a door to reveal a goat, and then the contestant is
-#'   given an opportunity to stay with their original selection
-#'   or switch to the other unopened door. There was a famous
-#'   debate about whether it was optimal to stay or switch when
-#'   given the option to switch, so this simulation was created
-#'   to test both strategies.
-#' @param
-#'   Yeet
+#'   This function checks the user's pick "a.pick" and 
+#'   determines if it is equal to a car or a goat.
+#'   If the selected the car, the game prints
+#'   "WIN". If they selected the goat, the game prints 
+#'   "LOSE."
+#'   
+#' @param ... no arguments are used by the function.
+#'   
 #' @return
-#'   The will return the user's final pick for the game.
+#'   This will return a 3 or 4 character string.
+#'   
 #' @examples
-#'   open_goat_door
+#'   determine_winner
+#'   
 #' @export
 determine_winner <- function( final.pick, game )
 {
@@ -189,27 +191,24 @@ determine_winner <- function( final.pick, game )
 
 
 #' @title
-#'   Change final door choice
+#'   Play Game
+#'   
 #' @description
-#'   This function switches to the other available door if the
-#'   goat door is shown to the user.
+#'   This function plays an entire round of the game.
+#'   
 #' @details
-#'   The game setup replicates the game on the TV show "Let's
-#'   Make a Deal" where there are three doors for a contestant
-#'   to choose from, one of which has a car behind it and two
-#'   have goats. The contestant selects a door, then the host
-#'   opens a door to reveal a goat, and then the contestant is
-#'   given an opportunity to stay with their original selection
-#'   or switch to the other unopened door. There was a famous
-#'   debate about whether it was optimal to stay or switch when
-#'   given the option to switch, so this simulation was created
-#'   to test both strategies.
-#' @param
-#'   Yeet
+#'   This function will auto-select and entire round of
+#'   the game using random choices. It then returns the
+#'   outcome of the game.
+#'   
+#' @param ... no arguments are used by the function.
+#'   
 #' @return
-#'   The will return the user's final pick for the game.
+#'   Win or Lose
+#'   
 #' @examples
-#'   open_goat_door
+#'   play_game()
+#'   
 #' @export
 play_game <- function( )
 {
@@ -236,27 +235,25 @@ play_game <- function( )
 
 
 #' @title
-#'   Change final door choice
+#'   Play 100 Games
+#'   
 #' @description
-#'   This function switches to the other available door if the
-#'   goat door is shown to the user.
+#'   The function will play 100 rounds of the game choosing
+#'   doors at random.
+#'   
 #' @details
-#'   The game setup replicates the game on the TV show "Let's
-#'   Make a Deal" where there are three doors for a contestant
-#'   to choose from, one of which has a car behind it and two
-#'   have goats. The contestant selects a door, then the host
-#'   opens a door to reveal a goat, and then the contestant is
-#'   given an opportunity to stay with their original selection
-#'   or switch to the other unopened door. There was a famous
-#'   debate about whether it was optimal to stay or switch when
-#'   given the option to switch, so this simulation was created
-#'   to test both strategies.
-#' @param
-#'   Yeet
+#'   This function will play 100 rounds of the Monty Hall 
+#'   game to calculate odds of choosing the "goat" door as
+#'   compared to staying on the first pick.
+#'   
+#' @param ... no arguments are used by the function.
+#'   
 #' @return
-#'   The will return the user's final pick for the game.
+#'   This function returns a data frame of the results.
+#'   
 #' @examples
-#'   open_goat_door
+#'   play_n_games()
+#'   
 #' @export
 play_n_games <- function( n=100 )
 {
